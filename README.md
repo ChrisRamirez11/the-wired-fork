@@ -1,113 +1,113 @@
-# the-wired
+# Remo
 
-> Fork de [ani-es](https://github.com/Zhuchii/ani-es) con soporte de descarga integrado para bibliotecas **Jellyfin**.
+> A fork of [ani-es](https://github.com/Zhuchii/ani-es) with built-in download support for **Jellyfin** libraries.
 
-Descargador de anime en español con dos formas de usarlo:
+Anime downloader with two ways to use it:
 
-| | Para quién | Qué hace |
+| | Who it is for | What it does |
 |---|---|---|
-| 🖥️ **[App de escritorio](#app-de-escritorio-windows-y-linux)** | La mayoría: instalar y usar | Buscar, descargar con cola, pausa y reintentos, y ver tu biblioteca. Windows y Linux |
-| ⌨️ **[Script de terminal](#script-de-terminal)** | Quien vive en la terminal | El reproductor + descargador original (ani-es), con `fzf` y `mpv` |
+| 🖥️ **[Desktop app](#desktop-app-windows-and-linux)** | Most people: install and use | Search, download with a queue, pause and retries, and browse your library. Windows and Linux |
+| ⌨️ **[Terminal script](#terminal-script)** | People who live in the terminal | The original player + downloader (ani-es), with `fzf` and `mpv` |
 
-Los dos guardan las descargas con la misma estructura de carpetas compatible con Jellyfin, así que puedes usar uno u otro sobre la misma biblioteca.
+Both save downloads with the same Jellyfin-compatible folder structure, so you can use either one over the same library.
 
 ---
 
-## App de escritorio (Windows y Linux)
+## Desktop app (Windows and Linux)
 
-### Descargar
+### Download
 
-Descarga el instalador de la **[última versión](https://github.com/KabraX/the-wired/releases/latest)**:
+Download the installer from the **[latest release](https://github.com/chrisdjobs/remo/releases/latest)**:
 
-| Sistema | Archivo |
+| System | File |
 |---|---|
-| **Windows 10/11** | `the-wired_X.Y.Z_x64-setup.exe` (recomendado) o `.msi` |
-| **Linux** (cualquier distro) | `the-wired_X.Y.Z_amd64.AppImage` |
+| **Windows 10/11** | `Remo_X.Y.Z_x64-setup.exe` (recommended) or `.msi` |
+| **Linux** (any distro) | `Remo_X.Y.Z_amd64.AppImage` |
 | **Debian / Ubuntu** | `.deb` |
 | **Fedora / openSUSE** | `.rpm` |
 
-Los archivos `.sig` que acompañan a cada instalador son firmas para las actualizaciones automáticas: no hace falta descargarlos.
+The `.sig` files that accompany each installer are signatures for automatic updates: you do not need to download them.
 
-- **Windows:** el instalador no está firmado con un certificado de pago, así que SmartScreen puede avisar de que *"Windows protegió su PC"*. Pulsa **Más información → Ejecutar de todos modos**. Se instala para tu usuario, sin pedir permisos de administrador.
-- **AppImage:** dale permiso de ejecución (`chmod +x the-wired_*.AppImage`) y ábrelo.
+- **Windows:** the installer is not signed with a paid certificate, so SmartScreen may warn that *"Windows protected your PC"*. Click **More info → Run anyway**. It installs for your user, without asking for administrator permissions.
+- **AppImage:** give it execute permission (`chmod +x Remo_*.AppImage`) and open it.
 
-### Qué hace
+### What it does
 
-- **Buscar** un anime y ver su ficha: episodios, tipo, calidad y cuáles ya tienes descargados.
-- **Descargar** episodios sueltos o la temporada entera, con una **cola** que se puede **pausar y reanudar** y que se retoma sola al volver a abrir la app.
-- **Reintentos automáticos** (a los 1, 5 y 15 minutos) cuando la web falla, y **notificación** al terminar.
-- **Icono en la bandeja**: si cierras la ventana con descargas en marcha, siguen en segundo plano.
-- **Biblioteca**: todo lo que tienes descargado (también lo bajado con el script), con portadas, episodios, tamaño y avisos de descargas a medias.
-- **Formato Jellyfin** opcional (`Season 01/<Anime> - S01E01.mp4`) y detección de temporadas desde el título (*"Overlord II"* → serie *Overlord*, temporada 2).
-- **Varias fuentes**: jkanime y HentaiJK (contenido +18, **desactivada por defecto**), cada una con su propia carpeta de biblioteca.
-- Tema claro / oscuro con colores de acento de Fluent.
+- **Search** for an anime and see its page: episodes, type, quality and which ones you already have downloaded.
+- **Download** single episodes or the whole season, with a **queue** that can be **paused and resumed** and that picks up again by itself when you reopen the app.
+- **Automatic retries** (after 1, 5 and 15 minutes) when the site fails, and a **notification** when it finishes.
+- **Tray icon**: if you close the window with downloads in progress, they keep going in the background.
+- **Library**: everything you have downloaded (including what was downloaded with the script), with covers, episodes, size and warnings about half-finished downloads.
+- **Optional Jellyfin layout** (`Season 01/<Anime> - S01E01.mp4`) and season detection from the title (*"Overlord II"* → series *Overlord*, season 2).
+- **Multiple sources**: jkanime and HentaiJK (+18 content, **disabled by default**), each with its own library folder.
+- Light / dark theme with Fluent accent colors.
 
-### Primer arranque
+### First launch
 
-La app no incluye las herramientas de descarga en el instalador. La primera vez ofrece descargarlas de sus repositorios oficiales:
+The app does not bundle the download tools in the installer. The first time it offers to download them from their official repositories:
 
-- **yt-dlp** (Windows y Linux) y **ffmpeg** (solo Windows; en Linux se usa el del gestor de paquetes).
-- Si ya las tienes instaladas en el sistema, la app usa esas.
+- **yt-dlp** (Windows and Linux) and **ffmpeg** (Windows only; on Linux the one from your package manager is used).
+- If you already have them installed on your system, the app uses those.
 
-### Actualizaciones
+### Updates
 
-Al abrirse, la app comprueba si hay una versión nueva y la ofrece con un aviso: un clic la descarga, la instala y reinicia. Las actualizaciones van firmadas y la app rechaza cualquiera que no lo esté.
+On startup the app checks whether a new version is available and offers it with a notice: one click downloads it, installs it and restarts. Updates are signed and the app rejects any that are not.
 
-### Si algo falla
+### If something goes wrong
 
-En **Ajustes → Registro → Copiar registro** se copia la versión, el sistema, las herramientas y lo último que hizo la app. Pégalo al [abrir un issue](https://github.com/KabraX/the-wired/issues).
+In **Ajustes → Registro → Copiar registro** (Settings → Log → Copy log) the version, the system, the tools and the last thing the app did are copied. Paste it when [opening an issue](https://github.com/chrisdjobs/remo/issues).
 
-### Dónde guarda sus datos
+### Where it stores its data
 
 | | Windows | Linux |
 |---|---|---|
-| Ajustes | `%APPDATA%\io.github.kabrax.thewired\` | `~/.config/io.github.kabrax.thewired/` |
-| Cola, índice de la biblioteca, yt-dlp/ffmpeg propios | `%APPDATA%\io.github.kabrax.thewired\` | `~/.local/share/io.github.kabrax.thewired/` |
-| Registro | `%LOCALAPPDATA%\io.github.kabrax.thewired\logs\` | `~/.local/share/io.github.kabrax.thewired/logs/` |
+| Settings | `%APPDATA%\io.github.chrisdjobs.remo\` | `~/.config/io.github.chrisdjobs.remo/` |
+| Queue, library index, bundled yt-dlp/ffmpeg | `%APPDATA%\io.github.chrisdjobs.remo\` | `~/.local/share/io.github.chrisdjobs.remo/` |
+| Log | `%LOCALAPPDATA%\io.github.chrisdjobs.remo\logs\` | `~/.local/share/io.github.chrisdjobs.remo/logs/` |
 
-Tu carpeta de biblioteca solo contiene los vídeos: la app no guarda nada más ahí.
+Your library folder only contains the videos: the app stores nothing else there.
 
-### Compilar desde el código
+### Build from source
 
-Requiere [Rust](https://rustup.rs/), Node.js y [pnpm](https://pnpm.io/), además de las [dependencias de Tauri](https://tauri.app/start/prerequisites/) de tu sistema.
+Requires [Rust](https://rustup.rs/), Node.js and [pnpm](https://pnpm.io/), plus the [Tauri dependencies](https://tauri.app/start/prerequisites/) for your system.
 
 ```bash
 cd app
 pnpm install
-pnpm tauri dev      # modo desarrollo
-pnpm tauri build    # instaladores en app/src-tauri/target/release/bundle/
+pnpm tauri dev      # development mode
+pnpm tauri build    # installers in app/src-tauri/target/release/bundle/
 ```
 
-Diseño y fases del proyecto: [`docs/app-tauri.md`](docs/app-tauri.md).
+Design and project phases: [`docs/app-tauri.md`](docs/app-tauri.md).
 
 ---
 
-## Script de terminal
+## Terminal script
 
-Reproductor **+ descargador** de anime en español desde la terminal. Manteniendo el scraper original de ani-es intacto, añade la capacidad de descargar episodios y temporadas completas directamente a una estructura de carpetas compatible con Jellyfin.
-
----
-
-## ⚠️ Aviso importante
-
-**Entornos probados (script):**
-
-- **Windows 11** con Git Bash / MINGW64 (no WSL) en Windows Terminal
-- **Linux:** CachyOS (Arch) con bash; la descarga va directa a una biblioteca de Jellyfin
-
-No se ha probado en macOS ni en WSL.
-
-the-wired (script y app) depende de la web de jkanime.net: si el sitio cambia su HTML, la búsqueda o la obtención de vídeos pueden dejar de funcionar hasta que se actualice el scraper. En ese caso el script lo indica y sugiere `the-wired -u`, y la app avisa de que *"la web parece haber cambiado"*.
+**Player + downloader** for anime in Spanish from the terminal. Keeping the original ani-es scraper intact, it adds the ability to download episodes and complete seasons directly into a Jellyfin-compatible folder structure.
 
 ---
 
-## ✨ Qué hay de nuevo
+## ⚠️ Important note
 
-ani-es original era solo un reproductor. the-wired añade un sistema de descarga integrado sin reescribir el scraper:
+**Tested environments (script):**
 
-### Descarga de episodios individuales
+- **Windows 11** with Git Bash / MINGW64 (not WSL) in Windows Terminal
+- **Linux:** CachyOS (Arch) with bash; downloads go straight to a Jellyfin library
 
-Tras seleccionar un episodio, en lugar de reproducirlo automáticamente, aparece un menú:
+It has not been tested on macOS or WSL.
+
+Remo (script and app) depends on the jkanime.net site: if the site changes its HTML, search or video extraction may stop working until the scraper is updated. In that case the script says so and suggests `remo -u`, and the app warns that *"the site seems to have changed"*.
+
+---
+
+## ✨ What's new
+
+The original ani-es was only a player. Remo adds an integrated download system without rewriting the scraper:
+
+### Downloading individual episodes
+
+After selecting an episode, instead of playing it automatically, a menu appears:
 
 ```
 Reproducir
@@ -116,13 +116,13 @@ Descargar temporada
 Atrás
 ```
 
-Seleccionar **Descargar episodio** obtiene una URL fresca del stream (`.m3u8`) y la descarga con `yt-dlp`, generando un MP4 compatible con Jellyfin.
+Selecting **Descargar episodio** (Download episode) gets a fresh stream URL (`.m3u8`) and downloads it with `yt-dlp`, producing a Jellyfin-compatible MP4.
 
-### Descarga de temporadas completas
+### Downloading complete seasons
 
-**Descargar temporada** itera todos los episodios disponibles. Cada episodio obtiene su propia URL fresca justo antes de descargarse — **no se cachean URLs** porque los parámetros `st` y `e` del `.m3u8` son temporales.
+**Descargar temporada** (Download season) iterates over all available episodes. Each episode gets its own fresh URL right before being downloaded — **URLs are never cached** because the `st` and `e` parameters of the `.m3u8` are temporary.
 
-Al finalizar muestra un resumen:
+When finished it shows a summary:
 
 ```
 ====================================
@@ -138,9 +138,9 @@ Fallidos: 0
 Total: 13
 ```
 
-### Estructura Jellyfin
+### Jellyfin structure
 
-Las descargas se guardan con el formato que Jellyfin espera:
+Downloads are saved in the format Jellyfin expects:
 
 ```
 <ANIME_DOWNLOAD_DIR>/
@@ -151,217 +151,217 @@ Las descargas se guardan con el formato que Jellyfin espera:
       ...
 ```
 
-La ruta por defecto es `<carpeta de Vídeos>/Anime` (en Linux, `~/Videos/Anime` o la que indique `xdg-user-dir VIDEOS`). Se puede cambiar con `ANIME_DOWNLOAD_DIR` (ver «Configuración»).
+The default path is `<Videos folder>/Anime` (on Linux, `~/Videos/Anime` or whatever `xdg-user-dir VIDEOS` reports). It can be changed with `ANIME_DOWNLOAD_DIR` (see "Configuration").
 
-### Modo descarga (`-d` / `--download`)
+### Download mode (`-d` / `--download`)
 
 ```bash
-the-wired -d
-the-wired --download
+remo -d
+remo --download
 ```
 
-Oculta la opción "Reproducir" del menú, dejando solo las opciones de descarga. Útil si usas the-wired principalmente como descargador.
+Hides the "Reproducir" (Play) option from the menu, leaving only the download options. Useful if you use Remo mainly as a downloader.
 
-### Detección de episodios ya descargados
+### Detection of already-downloaded episodes
 
-Antes de descargar un episodio, the-wired comprueba si el archivo MP4 ya existe y es válido (con `ffprobe`). Si es así, lo omite. Si existe un archivo parcial (`.part`), lo redescarga. No se sobrescriben descargas completas.
+Before downloading an episode, Remo checks whether the MP4 file already exists and is valid (with `ffprobe`). If it is, it skips it. If a partial file (`.part`) exists, it downloads it again. Complete downloads are never overwritten.
 
-### Sin recodificación
+### No re-encoding
 
-El servidor entrega vídeo H.264 1920x1080 + audio AAC. `yt-dlp` con `--merge-output-format mp4` solo remuxea (cambia el contenedor) sin recodificar, por lo que la descarga es rápida y sin pérdida de calidad.
+The server delivers H.264 1920x1080 video + AAC audio. `yt-dlp` with `--merge-output-format mp4` only remuxes (changes the container) without re-encoding, so the download is fast and lossless.
 
 ---
 
-## 🔧 Qué NO se modificó
+## 🔧 What was NOT modified
 
-Para minimizar el riesgo de romper algo que ya funcionaba:
+To minimize the risk of breaking something that already worked:
 
-- **Scraper:** el bloque de scraping de `videocap()` se extrajo a una función `scrape_episode()` pero el código es **idéntico** (mismas 48 líneas, diff vacío). No se tocaron los proveedores ni la lógica de obtención de URLs.
-- **Búsqueda de anime:** sin cambios.
-- **Selección de anime y episodios:** sin cambios.
-- **Reproducción con mpv:** sin cambios. El historial (`history.json`) sigue funcionando igual y las descargas no lo modifican.
-- **Comandos existentes:** `-h`, `-v`, `-c` siguen funcionando igual.
-- **Auto-actualización:** reescrita en la 1.4.2 (ver «Actualizaciones» en Configuración).
+- **Scraper:** the scraping block of `videocap()` was extracted into a `scrape_episode()` function but the code is **identical** (same 48 lines, empty diff). The providers and URL-fetching logic were not touched.
+- **Anime search:** unchanged.
+- **Anime and episode selection:** unchanged.
+- **mpv playback:** unchanged. History (`history.json`) still works the same and downloads do not modify it.
+- **Existing commands:** `-h`, `-v`, `-c` still work the same.
+- **Self-update:** rewritten in 1.4.2 (see "Updates" under Configuration).
 
 ---
 
-## 📦 Instalación del script en Linux
+## 📦 Installing the script on Linux
 
 ```bash
-git clone https://github.com/KabraX/the-wired.git
-cd the-wired
-./install.sh          # instala dependencias y copia the-wired a ~/.local/bin
-# ./install.sh --link # o: enlace al clon, y actualizas con git pull
+git clone https://github.com/chrisdjobs/remo.git
+cd remo
+./install.sh          # installs dependencies and copies remo to ~/.local/bin
+# ./install.sh --link # or: link to the clone, and update with git pull
 ```
 
-No copia nada como root: solo usa `sudo` para instalar las dependencias con el gestor de paquetes (pacman, apt, dnf o zypper). Para quitarlo: `./uninstall.sh` (añade `--purge` para borrar también el historial).
+It does not copy anything as root: it only uses `sudo` to install dependencies with the package manager (pacman, apt, dnf or zypper). To remove it: `./uninstall.sh` (add `--purge` to also delete the history).
 
-## 📦 Instalación del script (Windows 11 + Git Bash)
+## 📦 Installing the script (Windows 11 + Git Bash)
 
-> La guía de instalación sigue el mismo enfoque que [ani-cli](https://github.com/pystardust/ani-cli) para Windows, ya que ambos scripts corren sobre Git Bash / MINGW64.
+> This installation guide follows the same approach as [ani-cli](https://github.com/pystardust/ani-cli) for Windows, since both scripts run on Git Bash / MINGW64.
 
-### 1. Instalar Scoop
+### 1. Install Scoop
 
-Abre **PowerShell** y sigue las instrucciones de [scoop.sh](https://scoop.sh/) (quickstart).
+Open **PowerShell** and follow the instructions at [scoop.sh](https://scoop.sh/) (quickstart).
 
-### 2. Instalar Windows Terminal
+### 2. Install Windows Terminal
 
-Viene preinstalado en Windows 11. Si no lo tienes:
+It comes preinstalled on Windows 11. If you don't have it:
 
 ```powershell
 scoop bucket add extras
 scoop install extras/windows-terminal
 ```
 
-### 3. Instalar Git
+### 3. Install Git
 
-Si ya lo tienes, actualízalo. Si no:
+If you already have it, update it. If not:
 
 ```powershell
 scoop install git
 ```
 
-### 4. Configurar perfil Git Bash en Windows Terminal
+### 4. Set up the Git Bash profile in Windows Terminal
 
-Asegúrate de que **Git Bash** aparece en el menú de perfiles de Windows Terminal (botón de nueva pestaña).
+Make sure **Git Bash** appears in the Windows Terminal profile menu (new tab button).
 
-Si no aparece, añádelo manualmente:
+If it does not appear, add it manually:
 
-1. Ve a **Settings → Profiles → Add a new profile → + New empty profile**
+1. Go to **Settings → Profiles → Add a new profile → + New empty profile**
 2. **Name:** `Git Bash`
 3. **Command line:**
-   - Si instalaste git con scoop: `%GIT_INSTALL_ROOT%\bin\bash.exe -i -l`
-   - Si instalaste git por otros medios: `C:\Program Files\Git\bin\bash.exe -i -l`
-4. **Icon:** `%GIT_INSTALL_ROOT%\mingw64\share\git\git-for-windows.ico` (o la ruta equivalente)
+   - If you installed git with scoop: `%GIT_INSTALL_ROOT%\bin\bash.exe -i -l`
+   - If you installed git another way: `C:\Program Files\Git\bin\bash.exe -i -l`
+4. **Icon:** `%GIT_INSTALL_ROOT%\mingw64\share\git\git-for-windows.ico` (or the equivalent path)
 5. **Starting directory:** `%USERPROFILE%`
 6. **Hide profile from dropdown:** Off
-7. Guarda los cambios
+7. Save the changes
 
-Puedes establecer este perfil como predeterminado en **Startup** para no tener que cambiarlo cada vez.
+You can set this profile as the default under **Startup** so you don't have to switch every time.
 
-Reinicia Windows Terminal.
+Restart Windows Terminal.
 
-### 5. Instalar dependencias
+### 5. Install dependencies
 
-En el perfil **Git Bash** de Windows Terminal:
+In the **Git Bash** profile of Windows Terminal:
 
 ```bash
 scoop bucket add extras
 scoop install fzf ffmpeg mpv yt-dlp jq wget curl python
 ```
 
-> `yt-dlp` y `ffmpeg` son **obligatorios** para las descargas. Sin ellos, the-wired mostrará un error al intentar descargar y no continuará.
+> `yt-dlp` and `ffmpeg` are **required** for downloads. Without them, Remo will show an error when trying to download and will not continue.
 
-### 6. Instalar the-wired
+### 6. Install Remo
 
 ```bash
 cd ~/
-git clone https://github.com/KabraX/the-wired.git
-cd the-wired
-chmod +x the-wired
+git clone https://github.com/chrisdjobs/remo.git
+cd remo
+chmod +x remo
 ```
 
-Para poder ejecutarlo desde cualquier sitio, crea un alias o añade el directorio al PATH. Lo más sencillo es un symlink:
+To be able to run it from anywhere, create an alias or add the directory to PATH. The simplest option is a symlink:
 
 ```bash
-ln -s "$(pwd)/the-wired" /usr/local/bin/the-wired
+ln -s "$(pwd)/remo" /usr/local/bin/remo
 ```
 
-> Nota: `install.sh` es para Linux y **no funciona en Git Bash**. En Windows usa la instalación manual de arriba.
+> Note: `install.sh` is for Linux and **does not work on Git Bash**. On Windows use the manual installation above.
 
 ---
 
-## ⌨️ Uso del script
+## ⌨️ Script usage
 
-### Reproducir (comportamiento original de ani-es)
+### Play (original ani-es behavior)
 
 ```bash
-the-wired
+remo
 ```
 
-O buscando directamente:
+Or searching directly:
 
 ```bash
-the-wired elfen lied
+remo elfen lied
 ```
 
-Selecciona el anime → selecciona el episodio → elige **Reproducir**.
+Select the anime → select the episode → choose **Reproducir** (Play).
 
-### Descargar
+### Download
 
 ```bash
-the-wired
+remo
 ```
 
-Selecciona el anime → selecciona el episodio → elige **Descargar episodio** o **Descargar temporada**.
+Select the anime → select the episode → choose **Descargar episodio** (Download episode) or **Descargar temporada** (Download season).
 
-### Modo descarga
+### Download mode
 
 ```bash
-the-wired -d
-the-wired --download
+remo -d
+remo --download
 ```
 
-### Continuar donde lo dejaste
+### Continue where you left off
 
 ```bash
-the-wired -c
+remo -c
 ```
 
-### Ayuda y versión
+### Help and version
 
 ```bash
-the-wired --help
-the-wired --version
-the-wired -u        # buscar actualizaciones ahora
+remo --help
+remo --version
+remo -u        # check for updates now
 ```
 
 ---
 
-## 🔧 Dependencias
+## 🔧 Dependencies
 
-| Comando | Reproducir | Descargar | Cómo instalar (scoop) |
-|---------|:----------:|:---------:|------------------------|
+| Command | Play | Download | How to install (scoop) |
+|---------|:----:|:--------:|------------------------|
 | `wget` | ✅ | ✅ | `scoop install wget` |
 | `curl` | ✅ | ✅ | `scoop install curl` |
 | `jq` | ✅ | ✅ | `scoop install jq` |
 | `fzf` | ✅ | ✅ | `scoop install fzf` |
-| `grep` | ✅ | ✅ | viene con Git Bash |
-| `sed` | ✅ | ✅ | viene con Git Bash |
+| `grep` | ✅ | ✅ | comes with Git Bash |
+| `sed` | ✅ | ✅ | comes with Git Bash |
 | `python3` | ✅ | ✅ | `scoop install python` |
 | `mpv` | ✅ | — | `scoop install mpv` |
 | `yt-dlp` | — | ✅ | `scoop install yt-dlp` |
 | `ffmpeg` | — | ✅ | `scoop install ffmpeg` |
-| `ffprobe` | — | ✅ | viene con ffmpeg |
+| `ffprobe` | — | ✅ | comes with ffmpeg |
 
 ---
 
-## ⚙️ Configuración del script
+## ⚙️ Script configuration
 
-### Ruta de descarga
+### Download path
 
-Por defecto las descargas van a `<carpeta de Vídeos>/Anime`. Para usar tu biblioteca de Jellyfin:
+By default downloads go to `<Videos folder>/Anime`. To use your Jellyfin library:
 
 ```bash
-# bash / Git Bash (añádelo a ~/.bashrc para que persista)
-export ANIME_DOWNLOAD_DIR="/ruta/a/tu/biblioteca/Anime"   # Windows: "D:/Multimedy/Anime"
+# bash / Git Bash (add it to ~/.bashrc to make it persist)
+export ANIME_DOWNLOAD_DIR="/path/to/your/library/Anime"   # Windows: "D:/Multimedia/Anime"
 
 # fish
-set -Ux ANIME_DOWNLOAD_DIR /ruta/a/tu/biblioteca/Anime
+set -Ux ANIME_DOWNLOAD_DIR /path/to/your/library/Anime
 ```
 
-### Actualizaciones
+### Updates
 
-- the-wired busca una versión nueva **como mucho una vez al día** y solo la ofrece si su número de versión es **mayor** que el instalado (nunca baja de versión).
-- Antes de instalarla comprueba que el archivo descargado es un script válido.
-- `the-wired -u` fuerza la comprobación; `THE_WIRED_NO_UPDATE=1` la desactiva.
-- Si lo instalaste como enlace a un clon de git, no se reescribe: actualiza con `git pull`.
+- Remo looks for a new version **at most once a day** and only offers it if its version number is **greater** than the installed one (it never downgrades).
+- Before installing it checks that the downloaded file is a valid script.
+- `remo -u` forces the check; `REMO_NO_UPDATE=1` disables it.
+- If you installed it as a link to a git clone, it is not overwritten: update with `git pull`.
 
-### Archivos temporales
+### Temporary files
 
-Las páginas que descarga el scraper se guardan en una carpeta temporal que se borra al salir, así que puedes ejecutar `the-wired` desde cualquier carpeta sin que se llene de archivos.
+The pages downloaded by the scraper are saved in a temporary folder that is deleted on exit, so you can run `remo` from any folder without it filling up with files.
 
-### Estructura de carpetas Jellyfin
+### Jellyfin folder structure
 
 ```
 <ANIME_DOWNLOAD_DIR>/
@@ -371,96 +371,96 @@ Las páginas que descarga el scraper se guardan en una carpeta temporal que se b
       <Anime> - S01E02.mp4
 ```
 
-Los nombres de archivo se sanitizan con las reglas de Windows (también en Linux, para que la biblioteca funcione en ambos) (se eliminan `< > : " / \ | ? *`). Los caracteres Unicode (acentos, etc.) se preservan.
+File names are sanitized with Windows rules (also on Linux, so the library works on both) (`< > : " / \ | ? *` are removed). Unicode characters (accents, etc.) are preserved.
 
 ---
 
-## 💾 Historial
+## 💾 History
 
-the-wired mantiene el sistema de historial de ani-es (`history.json`) para recordar el último episodio visto y el progreso de reproducción.
+Remo keeps the ani-es history system (`history.json`) to remember the last watched episode and playback progress.
 
-**Las descargas no modifican el historial.** Si descargas un episodio, tu estado de reproducción no se ve afectado.
+**Downloads do not modify the history.** If you download an episode, your playback status is not affected.
 
 ---
 
-## 🧠 Cómo funciona la descarga
+## 🧠 How downloading works
 
 ```
-Usuario selecciona "Descargar episodio"
+User selects "Download episode"
   ↓
-scrape_episode() obtiene URL fresca del .m3u8 (mismo scraper que ani-es)
+scrape_episode() gets a fresh .m3u8 URL (same scraper as ani-es)
   ↓
-download_episode() llama a yt-dlp con la URL
+download_episode() calls yt-dlp with the URL
   ↓
-yt-dlp descarga los fragmentos HLS (364 fragmentos aprox.)
+yt-dlp downloads the HLS fragments (about 364 fragments)
   ↓
-FFmpeg remuxea a MP4 (sin recodificar: H.264 + AAC → contenedor MP4)
+FFmpeg remuxes to MP4 (no re-encoding: H.264 + AAC → MP4 container)
   ↓
-Archivo final: <Anime> - S01E01.mp4
+Final file: <Anime> - S01E01.mp4
 ```
 
-Para **Descargar temporada**, este proceso se repite por cada episodio, obteniendo una URL nueva cada vez:
+For **Download season**, this process is repeated for each episode, getting a new URL every time:
 
 ```
-episodio 1 → scrape_episode() → URL fresca → yt-dlp
-episodio 2 → scrape_episode() → URL fresca → yt-dlp
-episodio 3 → scrape_episode() → URL fresca → yt-dlp
+episode 1 → scrape_episode() → fresh URL → yt-dlp
+episode 2 → scrape_episode() → fresh URL → yt-dlp
+episode 3 → scrape_episode() → fresh URL → yt-dlp
 ...
 ```
 
-No se cachean URLs porque los parámetros `st` (start) y `e` (expire) del `.m3u8` expiran.
+URLs are not cached because the `st` (start) and `e` (expire) parameters of the `.m3u8` expire.
 
 ---
 
-## ❌ Desinstalar
+## ❌ Uninstall
 
-**App de escritorio:** desde *Configuración → Aplicaciones* en Windows, o con tu gestor de paquetes en Linux (`.deb` / `.rpm`). La AppImage basta con borrarla. Tus vídeos no se tocan.
+**Desktop app:** from *Settings → Apps* on Windows, or with your package manager on Linux (`.deb` / `.rpm`). For the AppImage you just delete the file. Your videos are not touched.
 
-**Script en Linux:**
+**Script on Linux:**
 
 ```bash
-./uninstall.sh          # desde el clon; añade --purge para borrar también el historial
+./uninstall.sh          # from the clone; add --purge to also delete the history
 ```
 
-**Script en Windows (Git Bash):**
+**Script on Windows (Git Bash):**
 
 ```bash
-rm /usr/local/bin/the-wired
-rm -rf ~/the-wired
+rm /usr/local/bin/remo
+rm -rf ~/remo
 ```
 
 ---
 
-## 📜 Créditos
+## 📜 Credits
 
-- **[Zhuchii/ani-es](https://github.com/Zhuchii/ani-es)** — el proyecto original. the-wired es un fork que respeta y reutiliza todo el scraper original.
-- **[ani-cli](https://github.com/pystardust/ani-cli)** — la guía de instalación en Windows (Git Bash + Windows Terminal + Scoop) está basada en su documentación.
-- **[yt-dlp](https://github.com/yt-dlp/yt-dlp)** — motor de descarga HLS.
-- **[FFmpeg](https://ffmpeg.org/)** — remuxeo a MP4.
-- **[Tauri](https://tauri.app/)** y **[Fluent UI](https://react.fluentui.dev/)** — base de la app de escritorio.
-
----
-
-## ⚠️ Nota legal
-
-Este proyecto (script y app) es solo una interfaz para interactuar con sitios de streaming públicos. No aloja, distribuye ni facilita contenido propio. El usuario es responsable del uso que haga de la herramienta.
+- **[Zhuchii/ani-es](https://github.com/Zhuchii/ani-es)** — the original project. Remo is a fork that respects and reuses the whole original scraper.
+- **[ani-cli](https://github.com/pystardust/ani-cli)** — the Windows installation guide (Git Bash + Windows Terminal + Scoop) is based on its documentation.
+- **[yt-dlp](https://github.com/yt-dlp/yt-dlp)** — HLS download engine.
+- **[FFmpeg](https://ffmpeg.org/)** — remuxing to MP4.
+- **[Tauri](https://tauri.app/)** and **[Fluent UI](https://react.fluentui.dev/)** — desktop app foundation.
 
 ---
 
-## ❤️ Contribuir
+## ⚠️ Disclaimer
 
-Las contribuciones son bienvenidas.
+Downloading copyrighted **content** may be illegal in your country. This tool is for educational purposes only and was created only to show how **it works**. Please support the **creators** by buying their **official releases**.
 
-**App:** antes de enviar cambios, ejecuta los tests y el linter (la CI los pasa en Linux y Windows):
+---
+
+## ❤️ Contributing
+
+Contributions are welcome.
+
+**App:** before sending changes, run the tests and the linter (CI runs them on Linux and Windows):
 
 ```bash
 cd app/src-tauri && cargo test && cargo clippy --all-targets
 cd .. && pnpm exec tsc --noEmit
 ```
 
-**Script:** el entorno de test principal es Windows 11 + Git Bash, y la CI pasa ShellCheck. Si añades features, por favor prueba que:
+**Script:** the main test environment is Windows 11 + Git Bash, and CI runs ShellCheck. If you add features, please test that:
 
-1. La reproducción con mpv sigue funcionando.
-2. El scraper original no se rompe.
-3. `history.json` no se corrompe.
-4. Las descargas generan MP4 válidos (verificables con `ffprobe`).
+1. Playback with mpv still works.
+2. The original scraper is not broken.
+3. `history.json` is not corrupted.
+4. Downloads produce valid MP4 files (verifiable with `ffprobe`).
