@@ -1,8 +1,8 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
-  "productName": "the-wired",
+  "productName": "Remo",
   "version": "1.2.0",
-  "identifier": "io.github.kabrax.thewired",
+  "identifier": "io.github.chrisdjobs.remo",
   "build": {
     "beforeDevCommand": "pnpm dev",
     "devUrl": "http://localhost:1420",
@@ -12,7 +12,7 @@
   "app": {
     "windows": [
       {
-        "title": "the-wired",
+        "title": "Remo",
         "width": 1100,
         "height": 740,
         "minWidth": 800,
@@ -40,8 +40,8 @@
       "icons/icon.ico"
     ],
     "category": "Video",
-    "shortDescription": "Buscador y descargador de anime en espa\u00f1ol",
-    "publisher": "KabraX",
+    "shortDescription": "Buscador y descargador de anime en español",
+    "publisher": "chrisdjobs",
     "createUpdaterArtifacts": true,
     "linux": {
       "deb": {
@@ -67,9 +67,9 @@
   },
   "plugins": {
     "updater": {
-      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEMxRkQ4RjA5MkZCREUyQTgKUldTbzRyMHZDWS85d2NSdnVJMkx3WmN3UGp4SUxNZnJJbVZrckE4a0tjUDFtcmVJak1vWGt4NWIK",
+      "pubkey": "REPLACE_WITH_YOUR_TAURI_SIGNING_PUBLIC_KEY",
       "endpoints": [
-        "https://github.com/KabraX/the-wired/releases/latest/download/latest.json"
+        "https://github.com/chrisdjobs/remo/releases/latest/download/latest.json"
       ],
       "windows": {
         "installMode": "passive"

@@ -11,13 +11,13 @@
 use std::path::PathBuf;
 use std::time::{Duration, Instant};
 
-use the_wired_lib::download::{DownloadManager, EpisodeRequest, Job, Status, YoutubeRequest};
-use the_wired_lib::jkanime::JkClient;
-use the_wired_lib::library::{self, Layout};
-use the_wired_lib::youtube::{AudioCodec, YtFormat, YtItem};
+use remo_lib::download::{DownloadManager, EpisodeRequest, Job, Status, YoutubeRequest};
+use remo_lib::jkanime::JkClient;
+use remo_lib::library::{self, Layout};
+use remo_lib::youtube::{AudioCodec, YtFormat, YtItem};
 
 fn temp_library(name: &str) -> PathBuf {
-    let dir = std::env::temp_dir().join(format!("the-wired-test-{name}-{}", std::process::id()));
+    let dir = std::env::temp_dir().join(format!("remo-test-{name}-{}", std::process::id()));
     let _ = std::fs::remove_dir_all(&dir);
     std::fs::create_dir_all(&dir).unwrap();
     dir

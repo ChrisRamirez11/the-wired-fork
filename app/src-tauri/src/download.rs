@@ -970,7 +970,7 @@ mod tests {
 
     #[test]
     fn leftover_fragments_are_found_and_removed() {
-        let dir = std::env::temp_dir().join(format!("the-wired-partials-{}", std::process::id()));
+        let dir = std::env::temp_dir().join(format!("remo-partials-{}", std::process::id()));
         std::fs::create_dir_all(&dir).unwrap();
         let out = dir.join("Higurashi - S01E20.mp4");
         let keep = dir.join("Higurashi - S01E21.mp4.part-Frag3.part");

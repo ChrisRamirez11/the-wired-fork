@@ -1,7 +1,7 @@
 //! Scraper de jkanime.net y de los sitios de su misma plataforma (hentaijk.com):
 //! mismo HTML y mismas APIs, solo cambia el dominio.
 //!
-//! Traducción a Rust de la lógica del script `the-wired`. Las funciones `parse_*` /
+//! Traducción a Rust de la lógica del script `Remo`. Las funciones `parse_*` /
 //! `extract_*` son puras (reciben HTML y devuelven datos) para poder probarlas con
 //! páginas guardadas, sin red. Las funciones `async` hacen las peticiones.
 

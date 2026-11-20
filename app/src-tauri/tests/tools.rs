@@ -6,12 +6,12 @@
 // misma en ambos sistemas, así que estos tests se ejecutan solo fuera de Windows.
 #![cfg(not(windows))]
 
-use the_wired_lib::tools::{self, Source};
+use remo_lib::tools::{self, Source};
 
 #[tokio::test]
 #[ignore = "descarga yt-dlp de GitHub"]
 async fn installs_ytdlp_when_missing() {
-    let base = std::env::temp_dir().join(format!("the-wired-tools-{}", std::process::id()));
+    let base = std::env::temp_dir().join(format!("remo-tools-{}", std::process::id()));
     let _ = std::fs::remove_dir_all(&base);
     std::fs::create_dir_all(base.join("empty-path")).unwrap();
     // Equipo sin yt-dlp: PATH apuntando a una carpeta vacía

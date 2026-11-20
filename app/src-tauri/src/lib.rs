@@ -19,7 +19,7 @@ use settings::Settings;
 use tauri::{AppHandle, Manager, State};
 
 /// Nombre del archivo de registro (sin `.log`) en la carpeta de logs de la app.
-const LOG_FILE: &str = "the-wired";
+const LOG_FILE: &str = "remo";
 
 /// Un error con todas sus causas: reqwest, por ejemplo, solo dice "error sending request"
 /// y el motivo real (DNS, TLS, proxy…) está en `source()`.
@@ -448,7 +448,7 @@ async fn read_log(app: AppHandle) -> Result<String, String> {
     let lines: Vec<&str> = text.lines().collect();
     let tail = lines[lines.len().saturating_sub(400)..].join("\n");
     Ok(format!(
-        "the-wired {} · {} {}\nyt-dlp: {:?} {}\nffmpeg: {:?} {}\nRegistro: {}\n\n{tail}",
+        "remo {} · {} {}\nyt-dlp: {:?} {}\nffmpeg: {:?} {}\nRegistro: {}\n\n{tail}",
         env!("CARGO_PKG_VERSION"),
         std::env::consts::OS,
         std::env::consts::ARCH,
@@ -486,7 +486,7 @@ pub fn run() {
                 ])
                 // Lo nuestro con detalle; de las librerías, solo avisos
                 .level(log::LevelFilter::Warn)
-                .level_for("the_wired_lib", log::LevelFilter::Debug)
+                .level_for("remo_lib", log::LevelFilter::Debug)
                 .level_for("webview", log::LevelFilter::Info)
                 .max_file_size(1_000_000)
                 .rotation_strategy(RotationStrategy::KeepOne)
@@ -502,7 +502,7 @@ pub fn run() {
         .manage(JkClient::new())
         .setup(|app| {
             log::info!(
-                "the-wired {} arranca en {} {}",
+                "remo {} arranca en {} {}",
                 env!("CARGO_PKG_VERSION"),
                 std::env::consts::OS,
                 std::env::consts::ARCH
@@ -612,5 +612,5 @@ pub fn run() {
             install_tools,
         ])
         .run(tauri::generate_context!())
-        .expect("error al arrancar the-wired");
+        .expect("error al arrancar remo");
 }

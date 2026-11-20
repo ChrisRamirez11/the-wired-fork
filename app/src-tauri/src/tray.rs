@@ -42,14 +42,14 @@ pub fn available() -> bool {
 pub const ID: &str = "main";
 
 pub fn build<R: Runtime>(app: &AppHandle<R>) -> tauri::Result<TrayIcon<R>> {
-    let show = MenuItem::with_id(app, "show", "Mostrar the-wired", true, None::<&str>)?;
+    let show = MenuItem::with_id(app, "show", "Mostrar Remo", true, None::<&str>)?;
     let pause = MenuItem::with_id(app, "pause_all", "Pausar descargas", true, None::<&str>)?;
     let resume = MenuItem::with_id(app, "resume_all", "Reanudar descargas", true, None::<&str>)?;
     let quit = MenuItem::with_id(app, "quit", "Salir", true, None::<&str>)?;
     let menu = Menu::with_items(app, &[&show, &pause, &resume, &quit])?;
 
     let mut builder = TrayIconBuilder::with_id(ID)
-        .tooltip("the-wired")
+        .tooltip("Remo")
         .menu(&menu)
         .show_menu_on_left_click(false)
         .on_menu_event(|app, event| match event.id().as_ref() {
@@ -119,7 +119,7 @@ pub fn summary(jobs: &[Job]) -> String {
 }
 
 pub fn update<R: Runtime>(tray: &TrayIcon<R>, jobs: &[Job]) {
-    let text = format!("the-wired — {}", summary(jobs));
+    let text = format!("Remo — {}", summary(jobs));
     let _ = tray.set_tooltip(Some(&text));
     // En Linux (AppIndicator) el tooltip no se muestra; el título sí, junto al icono
     #[cfg(target_os = "linux")]
@@ -136,7 +136,7 @@ pub fn notify_background<R: Runtime>(app: &AppHandle<R>) {
     if !SHOWN.swap(true, Ordering::Relaxed) {
         download::notify(
             app,
-            "the-wired sigue descargando",
+            "Remo sigue descargando",
             "La ventana se ha ocultado. Ábrela o sal desde el icono de la bandeja.",
         );
     }

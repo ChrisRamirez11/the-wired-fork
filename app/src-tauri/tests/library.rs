@@ -3,12 +3,12 @@
 use std::fs;
 use std::path::{Path, PathBuf};
 
-use the_wired_lib::catalog::{self, Index, IndexEntry};
-use the_wired_lib::jkanime::Site;
-use the_wired_lib::library;
+use remo_lib::catalog::{self, Index, IndexEntry};
+use remo_lib::jkanime::Site;
+use remo_lib::library;
 
 fn temp_library(name: &str) -> PathBuf {
-    let dir = std::env::temp_dir().join(format!("the-wired-lib-{name}-{}", std::process::id()));
+    let dir = std::env::temp_dir().join(format!("remo-lib-{name}-{}", std::process::id()));
     let _ = fs::remove_dir_all(&dir);
     fs::create_dir_all(&dir).unwrap();
     dir

@@ -6,8 +6,8 @@
 
 use std::path::Path;
 
-use the_wired_lib::jkanime::{JkClient, Site, anime, episode, search};
-use the_wired_lib::library;
+use remo_lib::jkanime::{JkClient, Site, anime, episode, search};
+use remo_lib::library;
 
 fn fixture(name: &str) -> String {
     std::fs::read_to_string(
@@ -109,7 +109,7 @@ fn episodes_api_on_any_site() {
 
 #[test]
 fn settings_from_1_1_are_migrated() {
-    use the_wired_lib::settings::Settings;
+    use remo_lib::settings::Settings;
     let old =
         r#"{"library_dir":"/mnt/media/Anime","concurrent_downloads":3,"jellyfin_layout":false}"#;
     let s: Settings = serde_json::from_str::<Settings>(old).unwrap().sanitized();

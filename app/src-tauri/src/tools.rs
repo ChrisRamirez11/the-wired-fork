@@ -185,7 +185,7 @@ async fn download<R: Runtime>(
     dest: &Path,
 ) -> Result<(), String> {
     let client = reqwest::Client::builder()
-        .user_agent(concat!("the-wired/", env!("CARGO_PKG_VERSION")))
+        .user_agent(concat!("remo/", env!("CARGO_PKG_VERSION")))
         .build()
         .map_err(|e| e.to_string())?;
     let resp = client
