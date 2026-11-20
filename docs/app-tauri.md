@@ -1,4 +1,4 @@
-# the-wired app — diseño de la versión de escritorio (Tauri)
+# Remo app — diseño de la versión de escritorio (Tauri)
 
 Estado: **aprobado** (2026-10-25). Publicadas la 1.0.0 (fases 0–3) y la 1.1.0 (cola persistente con
 pausa/reanudar, reintentos automáticos, notificaciones, bandeja, formato Jellyfin opcional y registro).
@@ -18,7 +18,7 @@ generados por GitHub Actions al crear una etiqueta.
 ## Lo que NO cambia
 
 - El **script de bash** sigue siendo la forma principal de uso en terminal:
-  `git clone` + `./install.sh` + `the-wired`, `the-wired -d`, `the-wired -c`.
+  `git clone` + `./install.sh` + `remo`, `remo -d`, `remo -c`.
 - No se compila el bash ni se reemplaza. La app es un **segundo producto** en el mismo repo.
 - Su autoactualización por `VERSION` y su `install.sh` siguen igual.
 
@@ -26,7 +26,7 @@ generados por GitHub Actions al crear una etiqueta.
 
 | Opción | Problema |
 |---|---|
-| Tauri ejecuta `the-wired` por debajo | En Windows exige Git Bash, wget, grep con `-P`, jq, fzf y python. Deja de ser un ejecutable nativo. Además el script está hecho para una persona (menús de fzf, preguntas con `read`), no para que otro programa lo controle |
+| Tauri ejecuta `remo` por debajo | En Windows exige Git Bash, wget, grep con `-P`, jq, fzf y python. Deja de ser un ejecutable nativo. Además el script está hecho para una persona (menús de fzf, preguntas con `read`), no para que otro programa lo controle |
 | **Reescribir la lógica en Rust dentro de la app** (elegida) | Hay que traducir el scraper. A cambio, la app funciona sola, sin bash ni herramientas externas salvo las que ella misma incluye |
 
 Consecuencia: habrá **dos implementaciones del scraper** (bash y Rust). Ver
@@ -35,8 +35,8 @@ Consecuencia: habrá **dos implementaciones del scraper** (bash y Rust). Ver
 ## Estructura del repo
 
 ```
-the-wired/
-├── the-wired              script de bash (sin cambios)
+remo/
+├── remo                   script de bash (sin cambios)
 ├── install.sh / uninstall.sh
 ├── excepciones.json
 ├── scraper-rules.json     NUEVO: patrones y URLs que comparten bash y app (fase 3)
@@ -72,7 +72,7 @@ the-wired/
 | `download_episode` / `download_season` con `yt-dlp --merge-output-format mp4` | `download` | yt-dlp incluido como *sidecar*; progreso leído de su salida y enviado a la interfaz por eventos; cola con N descargas simultáneas |
 | `ffprobe` para saltar episodios ya descargados | `download` | ffprobe incluido junto a ffmpeg |
 | `sanitize_filename`, `Season 01`, `Nombre - S01E01.mp4` | `library` | Mismas reglas, para que el script y la app produzcan rutas idénticas |
-| `~/the-wired/history.json` | `history` | **Mismo archivo y formato**: lo visto en la terminal aparece en la app y al revés |
+| `~/remo/history.json` | `history` | **Mismo archivo y formato**: lo visto en la terminal aparece en la app y al revés |
 | `ANIME_DOWNLOAD_DIR`, por defecto `<Vídeos>/Anime` | `settings` | La app usa la variable si existe; si no, su propio ajuste, con el mismo valor por defecto |
 | Reproducción con `mpv` | Ver "Reproducción" | |
 
@@ -156,4 +156,4 @@ Primero se hace la app con los patrones en código; esto se añade cuando funcio
 2. Interfaz: **Fluent UI React v9** en ambas. Más adelante, opcionalmente, un tema al estilo
    libadwaita en Linux (Parabolic usa GTK4/libadwaita en Linux y WinUI en Windows).
 3. Orden: primero núcleo y **descargas**; la reproducción pasa a la fase 4.
-4. Nombre: **the-wired**, igual que el script.
+4. Nombre: **Remo**, igual que el script.
