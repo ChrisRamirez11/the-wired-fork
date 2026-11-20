@@ -53,11 +53,11 @@ jobs:
         with:
           projectPath: app
           tagName: ${{ github.ref_name }}
-          releaseName: "the-wired ${{ github.ref_name }}"
+          releaseName: "Remo ${{ github.ref_name }}"
           releaseBody: |
-            App de escritorio de the-wired para Windows y Linux.
+            App de escritorio Remo para Windows y Linux.
 
-            **Windows:** `the-wired_*_x64-setup.exe` (recomendado) o `.msi`.
+            **Windows:** `Remo_*_x64-setup.exe` (recomendado) o `.msi`.
             **Linux:** `.AppImage` (cualquier distro), `.deb` (Debian/Ubuntu) o `.rpm` (Fedora/openSUSE).
 
             La primera vez la app descarga yt-dlp (y ffmpeg en Windows) desde sus repositorios oficiales.

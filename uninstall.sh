@@ -1,8 +1,8 @@
 #!/bin/bash
-# Desinstala the-wired. Conserva el historial salvo que se pida --purge.
+# Desinstala Remo. Conserva el historial salvo que se pida --purge.
 #
 #   ./uninstall.sh           quita el comando
-#   ./uninstall.sh --purge   quita también el historial (~/the-wired)
+#   ./uninstall.sh --purge   quita también el historial (~/remo)
 
 set -euo pipefail
 
@@ -12,9 +12,9 @@ PURGE=0
 
 removed=0
 
-if [[ -e "$INSTALL_DIR/the-wired" || -L "$INSTALL_DIR/the-wired" ]]; then
-    rm -f "$INSTALL_DIR/the-wired"
-    echo "Eliminado $INSTALL_DIR/the-wired"
+if [[ -e "$INSTALL_DIR/remo" || -L "$INSTALL_DIR/remo" ]]; then
+    rm -f "$INSTALL_DIR/remo"
+    echo "Eliminado $INSTALL_DIR/remo"
     removed=1
 fi
 
@@ -27,16 +27,16 @@ for legacy in /usr/local/bin/the-wired /usr/local/bin/excepciones.json; do
     fi
 done
 
-if [[ "$PURGE" == "1" && -d "$HOME/the-wired" ]]; then
-    rm -rf "$HOME/the-wired"
-    echo "Eliminado el historial ($HOME/the-wired)"
+if [[ "$PURGE" == "1" && -d "$HOME/remo" ]]; then
+    rm -rf "$HOME/remo"
+    echo "Eliminado el historial ($HOME/remo)"
 fi
 
 if [[ "$removed" == "0" ]]; then
-    echo "the-wired no estaba instalado."
+    echo "remo no estaba instalado."
 else
-    echo "the-wired desinstalado."
+    echo "remo desinstalado."
     if [[ "$PURGE" == "0" ]]; then
-        echo "El historial sigue en $HOME/the-wired (bórralo con --purge)."
+        echo "El historial sigue en $HOME/remo (bórralo con --purge)."
     fi
 fi

@@ -1,5 +1,5 @@
 #!/bin/bash
-# Instala the-wired para el usuario actual, sin copiar nada como root.
+# Instala Remo para el usuario actual, sin copiar nada como root.
 #
 #   ./install.sh            instala las dependencias y copia el script a ~/.local/bin
 #   ./install.sh --link     igual, pero con un enlace al clon (se actualiza con git pull)
@@ -56,7 +56,7 @@ if [[ "$DEPS" == "1" ]]; then
 fi
 
 mkdir -p "$INSTALL_DIR"
-target="$INSTALL_DIR/the-wired"
+target="$INSTALL_DIR/remo"
 
 if [[ -e "$target" || -L "$target" ]]; then
     echo "Ya existe $target; se reemplaza."
@@ -64,15 +64,15 @@ if [[ -e "$target" || -L "$target" ]]; then
 fi
 
 if [[ "$LINK" == "1" ]]; then
-    ln -s "$REPO_DIR/the-wired" "$target"
-    echo "Enlazado: $target -> $REPO_DIR/the-wired (actualiza con: git -C \"$REPO_DIR\" pull)"
+    ln -s "$REPO_DIR/remo" "$target"
+    echo "Enlazado: $target -> $REPO_DIR/remo (actualiza con: git -C \"$REPO_DIR\" pull)"
 else
-    install -m 755 "$REPO_DIR/the-wired" "$target"
-    echo "Instalado en $target (se actualiza solo; fuerza la comprobación con: the-wired -u)"
+    install -m 755 "$REPO_DIR/remo" "$target"
+    echo "Instalado en $target (se actualiza solo; fuerza la comprobación con: remo -u)"
 fi
 
 # El historial lo crea el propio script con los permisos del usuario.
-mkdir -p "$HOME/the-wired"
+mkdir -p "$HOME/remo"
 
 case ":$PATH:" in
     *":$INSTALL_DIR:"*) ;;
@@ -85,4 +85,4 @@ case ":$PATH:" in
 esac
 
 echo
-echo "Listo. Ejecuta: the-wired"
+echo "Listo. Ejecuta: remo"

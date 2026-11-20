@@ -34,9 +34,9 @@ WHITE='\033[0;37m'
 
 NC='\033[0m'
 
-HISTORY_DIR="$HOME/the-wired"
+HISTORY_DIR="$HOME/remo"
 OLD_DB="$HISTORY_DIR/history.db"
-HISTORY_FILE="$HOME/the-wired/history.json"
+HISTORY_FILE="$HOME/remo/history.json"
 # Ruta legacy de ani-es para migracion automatica del historial
 LEGACY_HISTORY_FILE="$HOME/ani-es/history.json"
 
@@ -44,10 +44,10 @@ init_history() {
 
     mkdir -p "$HISTORY_DIR"
 
-    # Migracion: si existe historial de ani-es y el de the-wired esta vacio/missing, copiarlo
+    # Migracion: si existe historial de ani-es y el de remo esta vacio/missing, copiarlo
     if [[ -f "$LEGACY_HISTORY_FILE" ]] && [[ ! -f "$HISTORY_FILE" || "$HISTORY_FILE" -ot "$LEGACY_HISTORY_FILE" ]]; then
         cp "$LEGACY_HISTORY_FILE" "$HISTORY_FILE"
-        echo "Historial de ani-es migrado a the-wired."
+        echo "Historial de ani-es migrado a remo."
     fi
 
     [[ -f "$HISTORY_FILE" ]] || echo "{}" >"$HISTORY_FILE"
@@ -161,7 +161,7 @@ save_history() {
 
 show_help() {
     echo ""
-    echo "    Uso: the-wired [opciones] [busqueda]"
+    echo "    Uso: remo [opciones] [busqueda]"
     echo ""
     echo "    Opciones:"
     echo "      -h, --help       Mostrar ayuda"
@@ -170,19 +170,19 @@ show_help() {
     echo "      -d, --download   Modo descarga (oculta la opcion de reproducir)"
     echo "      -u, --update     Buscar actualizaciones ahora (ignora el limite de una vez al dia)"
     echo ""
-    echo "    Variables: THE_WIRED_NO_UPDATE=1 desactiva la busqueda automatica de actualizaciones"
+    echo "    Variables: REMO_NO_UPDATE=1 desactiva la busqueda automatica de actualizaciones"
     echo ""
 }
 
 # Mensaje unico para cuando el scraper no encuentra lo que espera en la web
 aviso_sitio_cambiado() {
     echo -e "${YELLOW}Si esto se repite con animes que sabes que existen, es probable que jkanime.net"
-    echo -e "haya cambiado su web y the-wired necesite una actualizacion:${NC}"
-    echo -e "  ${CYAN}the-wired -u${NC}   o revisa https://github.com/KabraX/the-wired/issues"
+    echo -e "haya cambiado su web y remo necesite una actualizacion:${NC}"
+    echo -e "  ${CYAN}remo -u${NC}   o revisa https://github.com/chrisdjobs/remo/issues"
 }
 
 show_version() {
-    echo -e "the-wired ${PURPLE}v${VERSION}${NC}"
+    echo -e "remo ${PURPLE}v${VERSION}${NC}"
 }
 
 # parseo de argumentos
@@ -360,7 +360,7 @@ download_episode() {
 # Compara el VERSION remoto (rama main de GitHub) con el local y solo ofrece
 # actualizar si el remoto es MAS NUEVO. Comprueba como mucho una vez al dia,
 # valida la sintaxis antes de instalar y reemplaza el archivo de forma atomica.
-UPDATE_URL="https://raw.githubusercontent.com/KabraX/the-wired/main/the-wired"
+UPDATE_URL="https://raw.githubusercontent.com/chrisdjobs/remo/main/remo"
 UPDATE_STAMP="$HISTORY_DIR/.last_update_check"
 UPDATE_INTERVAL=86400
 
@@ -370,7 +370,7 @@ check_update() {
     script_path="$SCRIPT_PATH"
     script_dir=$(dirname "$script_path")
 
-    if [[ "${THE_WIRED_NO_UPDATE:-0}" == "1" ]]; then
+    if [[ "${REMO_NO_UPDATE:-0}" == "1" ]]; then
         return 0
     fi
 
@@ -433,7 +433,7 @@ check_update() {
         cp "$remote_file" "$script_path.new" && mv -f "$script_path.new" "$script_path"
     else
         sudo install -m 755 "$remote_file" "$script_path"
-    fi && echo -e "${GREEN}Actualizado a v$remote_version. Vuelve a ejecutar the-wired.${NC}" ||
+    fi && echo -e "${GREEN}Actualizado a v$remote_version. Vuelve a ejecutar remo.${NC}" ||
         echo -e "${RED}No se pudo instalar la actualizacion.${NC}"
 
     rm -f "$remote_file"
@@ -778,7 +778,7 @@ END
     fi
 
     if [ -z "$num_episodios" ]; then
-        echo -e "Enlace ${CYAN}$nuevaurl${NC} no válido. Por favor ve a ${GREEN} https://github.com/KabraX/the-wired ${NC} y abre un issue especificando el enlace y el anime que estabas intentando ver. Lo corregiré y actualizaré el script ;)"
+        echo -e "Enlace ${CYAN}$nuevaurl${NC} no válido. Por favor ve a ${GREEN} https://github.com/chrisdjobs/remo ${NC} y abre un issue especificando el enlace y el anime que estabas intentando ver."
         echo "$url_without_https"
         exit
     fi
@@ -1340,7 +1340,7 @@ PY
 
 # Todo lo que el scraper descarga (paginas, cookies, listas) va a una carpeta
 # temporal que se borra al salir, en vez de ensuciar la carpeta actual.
-WORKDIR=$(mktemp -d "${TMPDIR:-/tmp}/the-wired.XXXXXX") || exit 1
+WORKDIR=$(mktemp -d "${TMPDIR:-/tmp}/remo.XXXXXX") || exit 1
 trap 'rm -rf "$WORKDIR"' EXIT
 # Ctrl+C o kill: salir por la via normal para que se ejecute la limpieza
 trap 'exit 130' INT
