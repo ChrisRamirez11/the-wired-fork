@@ -1,24 +1,56 @@
-# the-wired — app de escritorio
+# Remo — desktop app
 
-App de escritorio (Tauri 2 + React + Fluent UI) para Windows y Linux. Hace lo mismo que el
-script de terminal de la raíz del repo, sin necesitar bash ni herramientas externas.
-Diseño y fases: [`../docs/app-tauri.md`](../docs/app-tauri.md).
+Desktop app (Tauri 2 + React + Fluent UI) for Windows and Linux. It does the same as the
+terminal script at the repository root, without needing bash or external tools.
+Design and phases: [`../docs/app-tauri.md`](../docs/app-tauri.md).
 
-## Desarrollo
+## Features
 
-Requisitos: Rust estable (`rustup`), Node.js LTS, pnpm y, en Linux, las
-[dependencias de Tauri](https://tauri.app/start/prerequisites/) (`webkit2gtk-4.1`, etc.).
+- Multi-source search (jkanime and HentaiJK, the latter disabled by default).
+- Persistent download queue with pause/resume, retries, notifications and tray icon.
+- Local library view with covers, seasons, sizes and partial-download warnings.
+- Optional Jellyfin folder layout (`Season 01/<Anime> - S01E01.mp4`).
+- Light/dark theme, bundled/downloadable `yt-dlp` and `ffmpeg`, signed auto-updates.
+
+## Development
+
+Requirements: stable Rust (`rustup`), Node.js LTS, pnpm and, on Linux, the
+[Tauri dependencies](https://tauri.app/start/prerequisites/) (`webkit2gtk-4.1`, etc.).
 
 ```bash
 cd app
 pnpm install
-pnpm tauri dev      # app en modo desarrollo con recarga en caliente
-cargo test --manifest-path src-tauri/Cargo.toml   # tests del núcleo
-pnpm tauri build    # instaladores en src-tauri/target/release/bundle/
+pnpm tauri dev      # app in development mode with hot reload
+cargo test --manifest-path src-tauri/Cargo.toml   # core tests
+pnpm tauri build    # installers in src-tauri/target/release/bundle/
 ```
 
-## Publicar
+## Where it stores its data
 
-Crea y sube una etiqueta `app-vX.Y.Z`; el workflow `release-app.yml` compila los
-instaladores de Windows y Linux y los adjunta a un borrador de Release.
-Antes, sube la versión en `src-tauri/tauri.conf.json` y `src-tauri/Cargo.toml`.
+The app identifier is `io.github.chrisdjobs.remo`:
+
+| | Windows | Linux |
+|---|---|---|
+| Settings | `%APPDATA%\io.github.chrisdjobs.remo\` | `~/.config/io.github.chrisdjobs.remo/` |
+| Queue, library index, tools | `%APPDATA%\io.github.chrisdjobs.remo\` | `~/.local/share/io.github.chrisdjobs.remo/` |
+| Log | `%LOCALAPPDATA%\io.github.chrisdjobs.remo\logs\` | `~/.local/share/io.github.chrisdjobs.remo/logs/` |
+
+## Publishing
+
+Create and push a tag `app-vX.Y.Z`; the `release-app.yml` workflow builds the Windows and
+Linux installers and attaches them to a draft Release.
+First, bump the version in `src-tauri/tauri.conf.json` and `src-tauri/Cargo.toml`.
+
+Before the first release, generate the updater signing key and configure it:
+
+```bash
+pnpm tauri signer generate -- -w ~/.tauri/remo.key
+```
+
+Put the public key in `src-tauri/tauri.conf.json` (`plugins.updater.pubkey`, it currently
+holds a placeholder) and add the private key and its password as the repository secrets
+`TAURI_SIGNING_PRIVATE_KEY` and `TAURI_SIGNING_PRIVATE_KEY_PASSWORD`.
+
+## Disclaimer
+
+Downloading copyrighted **content** may be illegal in your country. This tool is for educational purposes only and was created only to show how **it works**. Please support the **creators** by buying their **official releases**.
