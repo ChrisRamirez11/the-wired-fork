@@ -29,7 +29,7 @@ export const ACCENTS: AccentPreset[] = [
 
 export type ThemePrefs = { mode: ThemeMode; accent: string };
 
-const KEY = "the-wired.theme";
+const KEY = "remo.theme";
 export const DEFAULT_PREFS: ThemePrefs = { mode: "system", accent: "fluent" };
 
 export function loadPrefs(): ThemePrefs {

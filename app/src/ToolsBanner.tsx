@@ -34,7 +34,7 @@ export default function ToolsBanner({ status, onChange }: Props) {
         {error ??
           (busy && progress
             ? `Descargando ${progress.tool}… ${mb(progress.downloaded)}${progress.total ? ` de ${mb(progress.total)}` : ""}`
-            : `the-wired necesita ${names.join(" y ")}. Se descargan una sola vez desde sus repositorios oficiales de GitHub.`)}
+            : `Remo necesita ${names.join(" y ")}. Se descargan una sola vez desde sus repositorios oficiales de GitHub.`)}
         {busy && (
           <ProgressBar
             value={progress?.total ? progress.downloaded / progress.total : undefined}

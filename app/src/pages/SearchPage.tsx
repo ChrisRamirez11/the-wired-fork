@@ -42,7 +42,7 @@ type Props = {
   onOpen: (r: SearchResult) => void;
 };
 
-const SOURCE_KEY = "the-wired.search-source";
+const SOURCE_KEY = "remo.search-source";
 
 function lastSource(): Site {
   try {

@@ -145,7 +145,7 @@ export default function App() {
     <FluentProvider theme={theme}>
       <div className={styles.root}>
         <nav className={styles.nav}>
-          <Title2>the-wired</Title2>
+          <Title2>Remo</Title2>
           <TabList vertical selectedValue={page} onTabSelect={(_, d) => setPage(d.value as Page)}>
             <Tab value="buscar" icon={<SearchRegular />}>Buscar</Tab>
             <Tab value="biblioteca" icon={<LibraryRegular />}>Biblioteca</Tab>

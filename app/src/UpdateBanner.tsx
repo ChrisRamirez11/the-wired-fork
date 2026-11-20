@@ -21,7 +21,7 @@ export default function UpdateBanner() {
   return (
     <MessageBar intent={error ? "error" : "info"} layout="multiline">
       <MessageBarBody>
-        <MessageBarTitle>the-wired {update.version} disponible</MessageBarTitle>
+        <MessageBarTitle>Remo {update.version} disponible</MessageBarTitle>
         {error ?? (busy ? "Descargando la actualización…" : `Tienes la ${update.currentVersion}.`)}
         {busy && (
           <ProgressBar

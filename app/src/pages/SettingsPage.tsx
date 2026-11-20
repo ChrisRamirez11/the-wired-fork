@@ -52,7 +52,7 @@ const useStyles = makeStyles({
 const FLUENT_BLUE = "#0f6cbd";
 
 const SOURCE: Record<ToolSource, string> = {
-  app: "copia de the-wired",
+  app: "copia de Remo",
   system: "del sistema",
   missing: "no instalado",
 };
@@ -168,7 +168,7 @@ export default function SettingsPage({ settings, onSettingsChange, tools, onTool
       )}
 
       <Subtitle2>Herramientas</Subtitle2>
-      <Field label="yt-dlp" hint="Descarga los vídeos. La copia de the-wired se actualiza desde aquí; la del sistema, con su gestor de paquetes.">
+      <Field label="yt-dlp" hint="Descarga los vídeos. La copia de Remo se actualiza desde aquí; la del sistema, con su gestor de paquetes.">
         <div className={styles.row} style={{ alignItems: "center" }}>
           <Text>
             {tools?.ytdlp.version ? `Versión ${tools.ytdlp.version}` : "—"} · {tools ? SOURCE[tools.ytdlp.source] : "…"}

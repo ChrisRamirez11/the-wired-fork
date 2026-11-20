@@ -142,7 +142,7 @@ export function errorMessage(e: unknown, site: Site): string {
     case "NotFound":
       return `No se encontró la página en ${name}.`;
     case "SiteChanged":
-      return `La web de ${name} parece haber cambiado y the-wired necesita una actualización.`;
+      return `La web de ${name} parece haber cambiado y Remo necesita una actualización.`;
     default:
       return typeof e === "string" ? e : "Error inesperado.";
   }
