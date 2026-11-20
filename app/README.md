@@ -44,7 +44,7 @@ First, bump the version in `src-tauri/tauri.conf.json` and `src-tauri/Cargo.toml
 Before the first release, replace the placeholder values:
 
 - **Icons:** `src-tauri/icons/` still contains the untouched Tauri defaults. Generate the
-  full set from the Remo/oar artwork with
+  full set from the Remo artwork with
   `pnpm tauri icon path/to/remo-icon.png` (a PNG or SVG source).
 - **Updater signing key:** generate the key pair and configure it:
 
@@ -55,7 +55,7 @@ Before the first release, replace the placeholder values:
   Put the public key in `src-tauri/tauri.conf.json` (`plugins.updater.pubkey`, it currently
   holds the placeholder `REPLACE_WITH_YOUR_TAURI_SIGNING_PUBLIC_KEY`) and add the private key
   and its password as the repository secrets `TAURI_SIGNING_PRIVATE_KEY` and
-  `TAURI_SIGNING_PRIVATE_KEY_PASSWORD`.
+  `TAURI_SIGNING_PRIVATE_KEY_PASSWORD`. Run 'pnpm tauri signer generate -- -w ~/.tauri/remo.key' before the first release.
 
 ## Disclaimer
 
